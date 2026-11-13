@@ -25,15 +25,34 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Manifesto />
-      <Signatures />
-      <Fournil />
-      <CategoryIndex />
-      <Engagements />
-      <ClickCollect />
-      <SurMesure />
-      <Visit />
-      <FinalCta />
+      {/* Sections sous la ligne de flottaison : rendu différé (voir .cv) */}
+      <div className="cv">
+        <Manifesto />
+      </div>
+      <div className="cv" style={{ containIntrinsicSize: "auto 3600px" }}>
+        <Signatures />
+      </div>
+      <div className="cv" style={{ containIntrinsicSize: "auto 2600px" }}>
+        <Fournil />
+      </div>
+      <div className="cv">
+        <CategoryIndex />
+      </div>
+      <div className="cv">
+        <Engagements />
+      </div>
+      <div className="cv">
+        <ClickCollect />
+      </div>
+      <div className="cv">
+        <SurMesure />
+      </div>
+      <div className="cv" style={{ containIntrinsicSize: "auto 1500px" }}>
+        <Visit />
+      </div>
+      <div className="cv" style={{ containIntrinsicSize: "auto 800px" }}>
+        <FinalCta />
+      </div>
     </>
   );
 }

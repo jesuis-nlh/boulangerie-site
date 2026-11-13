@@ -26,13 +26,22 @@ Build testé : export statique `out/` (Next.js 16.4.6), servi localement sur :30
 ## 3. Lighthouse — `node qa/lighthouse.mjs` (mobile, throttling simulé)
 | Page | Perf. | A11y | Bonnes pratiques | SEO | LCP | CLS | TBT |
 |---|---|---|---|---|---|---|---|
-| `/` | 86 – 99* | 100 | 100 | 66** | 1,1 s | 0 | 120 – 550 ms* |
+| `/` | 96 – 100* | 100 | 100 | 66** | 1,1 s | 0 | 70 – 199 ms* |
 | `/produits/` | 99 – 100 | 100 | 100 | 66** | 1,1 s | 0 | 80 – 100 ms |
 | `/produits/la-trame/` | 96 – 99 | 100 | 100 | 66** | 0,9 s | 0 | 140 – 210 ms |
 | `/commander/` | 97 – 99 | 100 | 100 | 66** | 0,9 s | 0 | 130 – 200 ms |
 
-\* Fourchette sur 3 exécutions : le TBT de l'accueil varie fortement (hydratation de nombreuses illustrations SVG dans des composants client).
+\* Après optimisation (§ 3 bis), sur 9 exécutions. Avant : 86 – 99 et TBT 120 – 550 ms.
 \*\* Seul audit en échec : `is-crawlable`, **volontaire** (`noindex` tant que `bakery.isDemo`). Tous les autres audits SEO passent.
+
+## 3 bis. Optimisation de l'accueil (`node qa/perf-home.mjs / 5`)
+| Étape | Perf. (médiane) | TBT médian | Style & layout | Éléments filtrés |
+|---|---|---|---|---|
+| Avant | 96 (86 au pire) | 230 ms (550 au pire) | ≈ 750 ms | 369 |
+| Filtre « encre » appliqué une fois par illustration + sections hors écran en `content-visibility: auto` | 97 | 191 ms | ≈ 460 ms | 25 |
+| + Signatures et index des rayons rendus côté serveur (îlots client pour l'index et le survol) ; horloge du fournil mise à jour sans re-rendu | 97 (96 – 100) | 165 ms (70 – 199) | ≈ 460 ms | 25 |
+
+Une exécution isolée a mesuré un LCP de 2,7 s (8 autres : 1,06 s) ; non reproduite. E2E 12/12 et axe 0 violation revérifiés après ces changements.
 
 ## 4. Revue visuelle (captures `qa/shots/<largeur>/`)
 Largeurs : 390, 768, 1024, 1440. Pages : accueil, catalogue, fiche, commande, devis (pli + pleine page). États : panier ouvert, erreurs de commande, menu mobile, survol des rayons.
@@ -62,14 +71,14 @@ Largeurs : 390, 768, 1024, 1440. Pages : accueil, catalogue, fiche, commande, de
 | Animation & interactions | 9/10 | Langage cohérent, tout désactivable ; pas de transition entre pages |
 | Découverte & commande | 9/10 | Filtres, recherche, fiches, panier, créneaux, devis ; commande réelle non branchée (démo honnête) |
 | Responsive & accessibilité | 10/10 | 0 violation axe, clavier, mouvement réduit, 4 largeurs vérifiées |
-| Performance & technique | 8/10 | Export statique, CLS 0, LCP ≤ 1,1 s ; TBT de l'accueil instable (jusqu'à 550 ms) |
+| Performance & technique | 9/10 | Export statique, CLS 0, LCP ≈ 1,1 s, accueil 96 – 100 et TBT < 200 ms sur 9 exécutions ; un LCP isolé à 2,7 s |
 | Rédaction & crédibilité | 4/5 | Texte français original, aucune affirmation non étayée hors démo ; à faire relire par un rédacteur natif |
-| **Total** | **88/100** | Aucune catégorie sous 8/10 (normalisée) |
+| **Total** | **89/100** | Aucune catégorie sous 8/10 (normalisée) |
 
 ### Verdict
-**Seuil de 90 non atteint (88/100).** Le site est fonctionnellement et techniquement prêt pour une démonstration, mais je ne gonfle pas la note. Les points manquants viennent surtout de l'imagerie : sans photographie réelle ni génération autorisée, les illustrations portent l'identité mais pas tout l'appétit d'une photo.
+**Seuil de 90 non atteint (89/100).** La performance de l'accueil est désormais stable (Lighthouse 96 – 100). Le site est fonctionnellement et techniquement prêt pour une démonstration, mais je ne gonfle pas la note. Les points manquants viennent surtout de l'imagerie : sans photographie réelle ni génération autorisée, les illustrations portent l'identité mais pas tout l'appétit d'une photo.
 
 Pour franchir 90 :
 1. **Photographie réelle** de la boutique (liste de plans dans la Skill) ou génération d'images autorisée → +3 à +5 points (hero, imagerie).
-2. Réduire l'hydratation de l'accueil (illustrations rendues côté serveur et passées en `children` aux sections client) → TBT stable < 200 ms.
+2. ~~Stabiliser la performance de l'accueil~~ — fait (§ 3 bis).
 3. Relecture du texte par un rédacteur francophone.

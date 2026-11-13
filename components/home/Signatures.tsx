@@ -1,34 +1,20 @@
-"use client";
-
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
 import { ProductArt } from "@/components/art/ProductArt";
 import { AddToCart } from "@/components/cart/AddToCart";
 import { Icon } from "@/components/Icon";
 import { signatureProducts } from "@/data/products";
 import { formatPrice, formatWeight, pricePerKg } from "@/lib/format";
+import { SignatureIndex } from "./SignatureIndex";
 import styles from "./Signatures.module.css";
 
 const TINTS = ["var(--wheat-tint)", "var(--paper-2)", "var(--praline-tint)", "var(--paper-3)", "var(--praline-tint)"];
 
-/** Vitrine éditoriale : index collant à gauche, grands tableaux à droite. */
+/**
+ * Vitrine éditoriale : index collant à gauche, grands tableaux à droite.
+ * Composant serveur : les illustrations sont rendues dans le HTML ; seuls
+ * l'index (SignatureIndex) et les boutons d'ajout sont interactifs.
+ */
 export function Signatures() {
-  const [active, setActive] = useState(0);
-  const refs = useRef<(HTMLElement | null)[]>([]);
-
-  useEffect(() => {
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) setActive(Number((e.target as HTMLElement).dataset.i));
-        });
-      },
-      { rootMargin: "-45% 0px -45% 0px" },
-    );
-    refs.current.forEach((r) => r && io.observe(r));
-    return () => io.disconnect();
-  }, []);
-
   return (
     <section className={`section ${styles.section}`} aria-labelledby="sig-title">
       <div className="wrap">
@@ -40,21 +26,7 @@ export function Signatures() {
         </header>
 
         <div className={styles.layout}>
-          <nav className={styles.index} aria-label="Signatures">
-            <ol>
-              {signatureProducts.map((p, i) => (
-                <li key={p.slug}>
-                  <a href={`#sig-${p.slug}`} aria-current={active === i ? "true" : undefined}>
-                    <span className="mono">{String(i + 1).padStart(2, "0")}</span>
-                    {p.name}
-                  </a>
-                </li>
-              ))}
-            </ol>
-            <div className={styles.progress} aria-hidden="true">
-              <span style={{ transform: `scaleY(${(active + 1) / signatureProducts.length})` }} />
-            </div>
-          </nav>
+          <SignatureIndex items={signatureProducts.map((p) => ({ slug: p.slug, name: p.name }))} />
 
           <div className={styles.panels}>
             {signatureProducts.map((p, i) => {
@@ -63,10 +35,7 @@ export function Signatures() {
                 <article
                   key={p.slug}
                   id={`sig-${p.slug}`}
-                  ref={(el) => {
-                    refs.current[i] = el;
-                  }}
-                  data-i={i}
+                  data-sig={i}
                   className={styles.panel}
                   aria-labelledby={`sig-h-${p.slug}`}
                 >

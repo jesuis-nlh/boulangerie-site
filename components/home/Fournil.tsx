@@ -17,8 +17,11 @@ const STEPS = [
 /** « Le fournil, la nuit » : une horloge dont l'aiguille suit le défilement. */
 export function Fournil() {
   const list = useRef<HTMLOListElement>(null);
-  const [p, setP] = useState(0);
   const [active, setActive] = useState(0);
+  // Aiguilles et lueur mises à jour directement dans le DOM : pas de re-rendu par image.
+  const hourRef = useRef<SVGLineElement>(null);
+  const minRef = useRef<SVGLineElement>(null);
+  const glowRef = useRef<SVGCircleElement>(null);
 
   useEffect(() => {
     const el = list.current;
@@ -29,7 +32,10 @@ export function Fournil() {
       const r = el.getBoundingClientRect();
       const mid = innerHeight * 0.55;
       const prog = Math.min(1, Math.max(0, (mid - r.top) / r.height));
-      setP(prog);
+      const hours = 22 + prog * 9; // 22 h → 7 h
+      hourRef.current?.setAttribute("transform", `rotate(${((hours % 12) * 30).toFixed(1)} 100 100)`);
+      minRef.current?.setAttribute("transform", `rotate(${(prog * 9 * 360).toFixed(1)} 100 100)`);
+      glowRef.current?.style.setProperty("opacity", (0.25 + prog * 0.75).toFixed(3));
       setActive(Math.min(STEPS.length - 1, Math.floor(prog * STEPS.length)));
     };
     const on = () => {
@@ -43,10 +49,6 @@ export function Fournil() {
       removeEventListener("resize", on);
     };
   }, []);
-
-  const hours = 22 + p * 9; // 22 h → 7 h
-  const hourAngle = (hours % 12) * 30;
-  const minuteAngle = p * 9 * 360;
 
   return (
     <section id="savoir-faire" className={styles.section} aria-labelledby="fournil-title">
@@ -72,9 +74,9 @@ export function Fournil() {
                 />
               );
             })}
-            <circle cx="100" cy="100" r="40" className={styles.glow} style={{ opacity: 0.25 + p * 0.75 }} />
-            <line x1="100" y1="100" x2="100" y2="54" className={styles.hour} transform={`rotate(${hourAngle} 100 100)`} />
-            <line x1="100" y1="100" x2="100" y2="32" className={styles.minute} transform={`rotate(${minuteAngle} 100 100)`} />
+            <circle ref={glowRef} cx="100" cy="100" r="40" className={styles.glow} style={{ opacity: 0.25 }} />
+            <line x1="100" y1="100" x2="100" y2="54" className={styles.hour} ref={hourRef} transform="rotate(300 100 100)" />
+            <line x1="100" y1="100" x2="100" y2="32" className={styles.minute} ref={minRef} />
             <circle cx="100" cy="100" r="4" className={styles.pin} />
           </svg>
           <p className={styles.now} aria-hidden="true">

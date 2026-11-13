@@ -100,6 +100,9 @@
     font-size: 0.75rem;
     color: var(--ink-3);
   }
+  .name {
+    white-space: nowrap;
+  }
   .blurb {
     display: block;
     grid-area: blurb;

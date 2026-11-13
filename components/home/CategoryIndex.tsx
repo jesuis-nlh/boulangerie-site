@@ -1,11 +1,9 @@
-"use client";
-
 import Link from "next/link";
-import { useRef, useState } from "react";
 import { ProductArt } from "@/components/art/ProductArt";
 import { Icon } from "@/components/Icon";
 import { categories, products, type ArtId } from "@/data/products";
 import { formatPrice } from "@/lib/format";
+import { CategoryHover } from "./CategoryHover";
 import styles from "./CategoryIndex.module.css";
 
 const COVER: Record<string, ArtId> = {
@@ -17,18 +15,11 @@ const COVER: Record<string, ArtId> = {
   boissons: "cafe",
 };
 
-/** Index typographique des rayons ; l'illustration suit le pointeur au survol. */
+/**
+ * Index typographique des rayons ; l'illustration suit le pointeur au survol.
+ * Composant serveur ; le survol est géré par CategoryHover sans re-rendu React.
+ */
 export function CategoryIndex() {
-  const [hover, setHover] = useState<string | null>(null);
-  const float = useRef<HTMLDivElement>(null);
-  const box = useRef<HTMLDivElement>(null);
-
-  const move = (e: React.PointerEvent) => {
-    if (!box.current || !float.current || e.pointerType !== "mouse") return;
-    const r = box.current.getBoundingClientRect();
-    float.current.style.transform = `translate3d(${e.clientX - r.left}px, ${e.clientY - r.top}px, 0)`;
-  };
-
   return (
     <section className={`section ${styles.section}`} aria-labelledby="cat-title">
       <div className="wrap">
@@ -44,14 +35,14 @@ export function CategoryIndex() {
           </Link>
         </div>
 
-        <div ref={box} className={styles.box} onPointerMove={move} onPointerLeave={() => setHover(null)}>
+        <CategoryHover className={styles.box} floatClass={styles.float} showClass={styles.show}>
           <ul className={styles.list}>
             {categories.map((c, i) => {
               const items = products.filter((p) => p.category === c.id);
               const from = Math.min(...items.map((p) => p.priceCents));
               return (
                 <li key={c.id} data-reveal style={{ "--d": `${i * 0.05}s` } as React.CSSProperties}>
-                  <Link href={`/produits/?rayon=${c.id}`} className={styles.row} onPointerEnter={() => setHover(c.id)} onFocus={() => setHover(c.id)} onBlur={() => setHover(null)}>
+                  <Link href={`/produits/?rayon=${c.id}`} className={styles.row} data-cat={c.id}>
                     <span className={`mono ${styles.idx}`}>{String(i + 1).padStart(2, "0")}</span>
                     <span className={styles.thumb} aria-hidden="true">
                       <ProductArt id={COVER[c.id]} />
@@ -67,14 +58,14 @@ export function CategoryIndex() {
               );
             })}
           </ul>
-          <div ref={float} className={styles.float} aria-hidden="true">
+          <div className={styles.float} aria-hidden="true">
             {categories.map((c) => (
-              <div key={c.id} className={`${styles.floatArt} ${hover === c.id ? styles.show : ""}`}>
+              <div key={c.id} className={styles.floatArt} data-float={c.id}>
                 <ProductArt id={COVER[c.id]} />
               </div>
             ))}
           </div>
-        </div>
+        </CategoryHover>
       </div>
     </section>
   );

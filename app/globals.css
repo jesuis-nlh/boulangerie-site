@@ -742,3 +742,11 @@ textarea.input {
     top: calc(var(--header-h) + 1.5rem);
   }
 }
+
+/* ----------------------------------------------------------------- Rendu différé
+   Les sections hors écran ne sont ni stylées, ni mises en page, ni peintes avant
+   d'approcher du viewport. `auto` mémorise la taille réelle une fois rendue. */
+.cv {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1100px;
+}

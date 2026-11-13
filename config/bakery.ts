@@ -100,7 +100,7 @@ export const bakery = {
   ],
 
   site: {
-    url: "https://trame-boulangerie.example",
+    url: "https://boulangerie-site.vercel.app",
     locale: "fr_FR",
   },
 

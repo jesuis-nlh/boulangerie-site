@@ -24,10 +24,14 @@ Shoot in the shop, morning light, one consistent set-up per series.
 Deliver 2400 px long edge, sRGB; export AVIF + WebP; set `width`/`height` to avoid CLS.
 
 ## Risograph illustration system (no photos available)
-- Base shape in `INK.wheat` → crust shading `INK.crust` with `mask="url(#shade-br)"` + multiply → halftone dots → flour dust.
-- Scoring ("grignes") via `lens()`; highlight strokes in `INK.flour` at 0.6–0.75 opacity.
+- `Baked`: base `INK.wheat` → cream highlight (`#hi-tl`) for volume → crust shading (`#shade-br`, multiply) → dark baked rim (`#rim-b`) → blisters (`#blister`) → halftone dots → flour dust.
+- Scoring: `Grigne` (open cut with a raised ear: pale crumb inside, ear shadow, dark ridge, light edge). Width ≈ 13–17 on a 400 px loaf; thinner reads as scratches.
+- Appetite comes from **cross-sections**: `Slice` draws a crust-rimmed crumb face with deterministic holes. Use it for the signature loaf and any layered cake.
+- Gloss (`url(#gloss)`) for egg wash and glazes; small pink chunk + white dot for pralines.
+- Apply the `#riso` filter **once per illustration** (performance) — not per shape.
+- Rye crackle was tried three ways (grid lines, flakes, random-walk cracks) and all read as noise at catalogue size; parallel shallow scores read better.
 - Misregistered ink outline (`<Line>` translates by 3,-2) gives the printed feel. Keep it partial (bottom contour only).
-- Grain filter `#riso`: displacement 5, hole matrix `0 0 0 -8 5.6`. Heavier grain makes dark items (entremets, coffee lid) look noisy.
+- Grain filter `#riso`: displacement 5, hole matrix `0 0 0 -11 8.1`. Heavier grain makes dark items (entremets, coffee lid) look like snow.
 - Always present on a tinted square (category tint) so items read as a set.
 - Label as illustration (fig. caption, alt text "Illustration : …").
 

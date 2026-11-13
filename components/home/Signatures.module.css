@@ -33,7 +33,7 @@
   text-decoration: none;
 }
 .art {
-  width: 96%;
+  width: 86%;
   transition: transform 1.2s var(--ease-out);
 }
 .visual:hover .art {

@@ -67,9 +67,6 @@ export function Hero() {
           <div className={`${styles.layer} ${styles.croissant}`}>
             <ProductArt id="croissant" />
           </div>
-          <div className={`${styles.layer} ${styles.slice}`}>
-            <ProductArt id="tartepart" />
-          </div>
           <p className={`${styles.caption} fade-up`} style={{ "--d": "1s" } as React.CSSProperties}>
             <span>Fig. 01</span> La Trame — miche au levain, 1 kg
           </p>

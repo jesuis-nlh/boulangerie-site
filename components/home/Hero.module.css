@@ -147,13 +147,6 @@
   transform: translate3d(calc(var(--mx) * 46px), calc(var(--my) * 34px + var(--sy) * -0.24px), 0) rotate(-8deg);
   animation: rise 1.4s 0.55s var(--ease-out) both;
 }
-.slice {
-  width: 40%;
-  right: -4%;
-  bottom: 4%;
-  transform: translate3d(calc(var(--mx) * 36px), calc(var(--my) * 28px + var(--sy) * -0.18px), 0) rotate(6deg);
-  animation: rise 1.4s 0.7s var(--ease-out) both;
-}
 @keyframes rise {
   from {
     opacity: 0;

@@ -1,0 +1,52 @@
+.cursor {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 90;
+  pointer-events: none;
+  width: 0;
+  height: 0;
+}
+.cursor::before {
+  content: "";
+  position: absolute;
+  left: -9px;
+  top: -9px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--praline);
+  mix-blend-mode: multiply;
+  opacity: 0.55;
+  transition:
+    transform 0.45s var(--ease-out),
+    opacity 0.3s;
+}
+.big::before {
+  transform: scale(5.2);
+  opacity: 0.9;
+}
+.label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%) scale(0.6);
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink);
+  white-space: nowrap;
+  opacity: 0;
+  transition:
+    opacity 0.25s,
+    transform 0.45s var(--ease-out);
+}
+.big .label {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+.hidden::before,
+.hidden .label {
+  opacity: 0;
+}

@@ -1,0 +1,133 @@
+.section {
+  background: var(--night);
+  color: var(--night-ink);
+  padding-block: clamp(6rem, 12vw, 11rem) 3rem;
+  position: relative;
+  overflow: clip;
+}
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(60% 50% at 20% 30%, rgba(227, 165, 72, 0.12), transparent 70%);
+  pointer-events: none;
+}
+.grid {
+  position: relative;
+  display: grid;
+  gap: 3rem;
+}
+.eyebrow {
+  color: rgba(239, 230, 214, 0.65);
+}
+.title {
+  margin-top: 1.2rem;
+}
+.title em {
+  color: var(--wheat);
+}
+.clock {
+  width: min(260px, 60vw);
+  margin-top: 2.5rem;
+  display: block;
+}
+.face {
+  fill: none;
+  stroke: rgba(239, 230, 214, 0.25);
+}
+.tick {
+  stroke: rgba(239, 230, 214, 0.25);
+  stroke-width: 1;
+}
+.tickL {
+  stroke: var(--night-ink);
+  stroke-width: 2;
+}
+.glow {
+  fill: var(--wheat);
+  filter: blur(18px);
+}
+.hour {
+  stroke: var(--night-ink);
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+.minute {
+  stroke: var(--praline);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+.pin {
+  fill: var(--praline);
+}
+.now {
+  font-family: var(--f-display);
+  font-size: 1.6rem;
+  margin: 1rem 0 0;
+}
+.now :global(.mono) {
+  color: var(--wheat);
+  font-size: 1rem;
+  margin-right: 0.4rem;
+}
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: s;
+}
+.steps li {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+  column-gap: 1.2rem;
+  padding-block: 2rem;
+  border-top: 1px solid rgba(239, 230, 214, 0.16);
+  align-content: start;
+  opacity: 0.38;
+  transition: opacity 0.6s var(--ease-out);
+}
+.steps li.on {
+  opacity: 1;
+}
+.time {
+  color: var(--wheat);
+  font-size: 0.95rem;
+  padding-top: 0.6rem;
+}
+.verb {
+  font-family: var(--f-display);
+  font-size: clamp(2.2rem, 4.4vw, 3.6rem);
+  line-height: 1;
+}
+.steps p {
+  grid-column: 2;
+  margin: 0.8rem 0 0;
+  max-width: 32em;
+  color: rgba(239, 230, 214, 0.78);
+}
+.disclaimer {
+  position: relative;
+  margin-top: 3rem;
+  font-size: 0.78rem;
+  color: rgba(239, 230, 214, 0.55);
+}
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: 5fr 7fr;
+    gap: 5rem;
+  }
+  .sticky {
+    position: sticky;
+    top: calc(var(--header-h) + 3rem);
+    align-self: start;
+  }
+  .steps li {
+    padding-block: 3.2rem;
+    min-height: 34vh;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .steps li {
+    opacity: 1;
+  }
+}

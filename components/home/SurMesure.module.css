@@ -1,0 +1,60 @@
+.grid {
+  display: grid;
+  gap: 3rem;
+  align-items: center;
+}
+.visual {
+  position: relative;
+  aspect-ratio: 1;
+  background: var(--paper-3);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+.visual::before {
+  content: "";
+  position: absolute;
+  width: 70%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1px solid var(--ink);
+  opacity: 0.25;
+}
+.art {
+  position: relative;
+  width: 76%;
+  transform: translate(-8%, -6%);
+}
+.art2 {
+  position: absolute;
+  width: 46%;
+  right: 2%;
+  bottom: 2%;
+}
+.copy {
+  display: grid;
+  gap: 1.4rem;
+  justify-items: start;
+}
+.copy em {
+  color: var(--praline-ink);
+}
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  border-top: 1px solid var(--line-strong);
+}
+.list li {
+  padding-block: 0.7rem;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--f-display);
+  font-size: 1.45rem;
+}
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: 6fr 5fr;
+    gap: 5rem;
+  }
+}

@@ -1,0 +1,121 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+}
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(27, 24, 32, 0.45);
+}
+.panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(460px, 100%);
+  background: var(--paper);
+  display: flex;
+  flex-direction: column;
+  box-shadow: -20px 0 60px rgba(0, 0, 0, 0.15);
+}
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem var(--gutter) 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+.close {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  background: none;
+  display: grid;
+  place-items: center;
+}
+.close:hover {
+  background: var(--paper-2);
+}
+.lines {
+  list-style: none;
+  margin: 0;
+  padding: 0 1.5rem;
+  overflow-y: auto;
+  flex: 1;
+}
+.line {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 1rem;
+  padding-block: 1.1rem;
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+.thumb {
+  background: var(--paper-2);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+}
+.thumb svg {
+  width: 92%;
+}
+.info {
+  display: grid;
+  gap: 0.2rem;
+  font-size: 0.9rem;
+}
+.name {
+  font-family: var(--f-display);
+  font-size: 1.4rem;
+  line-height: 1.1;
+  text-decoration: none;
+}
+.name:hover {
+  text-decoration: underline;
+}
+.lead {
+  font-size: 0.8rem;
+  color: var(--praline-ink);
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.4rem;
+}
+.foot {
+  padding: 1.25rem 1.5rem 1.5rem;
+  border-top: 1px solid var(--ink);
+  display: grid;
+  gap: 0.8rem;
+  background: var(--paper-2);
+}
+.total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+.small {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--ink-2);
+}
+.empty {
+  flex: 1;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  text-align: center;
+  gap: 0.6rem;
+  padding: 2rem;
+}
+.empty p {
+  margin: 0;
+}
+.emptyArt {
+  width: 200px;
+}

@@ -1,0 +1,139 @@
+.footer {
+  background: var(--night);
+  color: var(--night-ink);
+  padding-block: clamp(4rem, 8vw, 7rem) 2rem;
+  position: relative;
+  z-index: 1;
+}
+.footer a {
+  text-decoration: none;
+}
+.footer a:hover {
+  text-decoration: underline;
+}
+.footer :focus-visible {
+  outline-color: var(--praline);
+}
+.top {
+  display: grid;
+  gap: 1.5rem;
+  align-items: end;
+  border-bottom: 1px solid rgba(239, 230, 214, 0.18);
+  padding-bottom: 2.5rem;
+}
+.word {
+  margin: 0;
+  font-family: var(--f-display);
+  font-size: clamp(6rem, 26vw, 22rem);
+  line-height: 0.75;
+  letter-spacing: -0.04em;
+}
+.word span {
+  color: var(--praline);
+}
+.sign {
+  margin: 0;
+  max-width: 28em;
+  color: rgba(239, 230, 214, 0.75);
+}
+.cols {
+  display: grid;
+  gap: 2.5rem;
+  padding-block: 3rem;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+}
+.cols ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.15rem;
+}
+.cols li a,
+.cols address {
+  display: inline-block;
+  padding-block: 0.35rem;
+  font-style: normal;
+}
+.h {
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(239, 230, 214, 0.6);
+  margin-bottom: 1rem;
+}
+.hours {
+  margin: 0;
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.92rem;
+}
+.hours div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px dotted rgba(239, 230, 214, 0.2);
+  padding-bottom: 0.3rem;
+}
+.hours dt {
+  color: rgba(239, 230, 214, 0.7);
+}
+.hours dd {
+  margin: 0;
+  font-family: var(--f-mono);
+  font-size: 0.82rem;
+}
+.social {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.5rem;
+}
+.small {
+  font-size: 0.82rem;
+  color: rgba(239, 230, 214, 0.65);
+  margin-top: 1.2rem;
+}
+.demo {
+  display: flex;
+  gap: 0.7rem;
+  align-items: flex-start;
+  font-size: 0.85rem;
+  color: rgba(239, 230, 214, 0.8);
+  border: 1px dashed rgba(239, 230, 214, 0.3);
+  padding: 1rem;
+  margin: 0 0 2rem;
+}
+.demo svg {
+  flex: none;
+  margin-top: 3px;
+}
+.legal {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 1.5rem;
+  font-size: 0.85rem;
+  color: rgba(239, 230, 214, 0.7);
+}
+.legal a,
+.linkBtn {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.linkBtn {
+  background: none;
+  border: 0;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+.linkBtn:hover {
+  text-decoration: underline;
+}
+@media (min-width: 900px) {
+  .top {
+    grid-template-columns: 1fr auto;
+  }
+}

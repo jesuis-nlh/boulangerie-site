@@ -1,0 +1,31 @@
+{
+  "name": "trame-boulangerie",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Trame — site démonstration d'une boulangerie fictive de la Croix-Rousse, Lyon",
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "npx serve out -l 3000",
+    "typecheck": "tsc --noEmit",
+    "qa:shots": "node qa/screenshots.mjs",
+    "qa:e2e": "node qa/e2e.mjs",
+    "qa:a11y": "node qa/a11y.mjs",
+    "qa:lighthouse": "node qa/lighthouse.mjs",
+    "qa": "node qa/e2e.mjs && node qa/a11y.mjs && node qa/lighthouse.mjs"
+  },
+  "dependencies": {
+    "motion": "14.13.0",
+    "next": "16.4.6",
+    "react": "19.3.1",
+    "react-dom": "19.3.1"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "4.14.0",
+    "@types/node": "^22",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "^19",
+    "lighthouse": "^13.6.0",
+    "typescript": "^5.9"
+  }
+}

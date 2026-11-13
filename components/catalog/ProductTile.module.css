@@ -1,0 +1,96 @@
+.tile {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  background: var(--paper);
+  height: 100%;
+}
+.visual {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+.art {
+  width: 100%;
+  transition: transform 0.9s var(--ease-out);
+}
+.tile:hover .art {
+  transform: scale(1.06) rotate(-2deg);
+}
+.tags {
+  position: absolute;
+  top: 0.8rem;
+  left: 0.8rem;
+  display: flex;
+  gap: 0.35rem;
+  flex-wrap: wrap;
+}
+.tags :global(.tag) {
+  background: var(--paper);
+}
+.body {
+  display: grid;
+  gap: 0.6rem;
+  align-content: start;
+  padding: 1.1rem 1.1rem 1.4rem;
+}
+.name {
+  font-family: var(--f-display);
+  font-size: 1.7rem;
+  line-height: 1;
+  padding-right: 3rem;
+}
+.name a {
+  text-decoration: none;
+}
+.name a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}
+.short {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--ink-2);
+  min-height: 2.9em;
+}
+.fmt {
+  font-size: 0.85rem;
+}
+.quick {
+  position: absolute;
+  right: 0.9rem;
+  top: calc(100% - 100% + 0.9rem);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 0;
+  background: var(--ink);
+  color: var(--paper);
+  display: grid;
+  place-items: center;
+  transition:
+    transform 0.4s var(--ease-out),
+    background-color 0.25s;
+}
+.quick:hover {
+  background: var(--praline);
+  color: var(--ink);
+  transform: rotate(90deg);
+}
+.quick:active {
+  transform: rotate(90deg) scale(0.9);
+}
+.shopOnly {
+  position: absolute;
+  right: 0.9rem;
+  top: 0.9rem;
+  font-family: var(--f-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--paper);
+  padding: 0.35em 0.7em;
+  border-radius: 999px;
+}

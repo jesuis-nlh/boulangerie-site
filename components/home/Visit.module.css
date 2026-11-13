@@ -1,0 +1,140 @@
+.section {
+  border-top: 1px solid var(--line);
+}
+.grid {
+  display: grid;
+  gap: 3rem;
+}
+.info {
+  display: grid;
+  gap: 1.6rem;
+  align-content: start;
+}
+.info h2 em {
+  color: var(--praline-ink);
+}
+.facts {
+  margin: 0;
+  display: grid;
+  gap: 1.2rem;
+  border-top: 1px solid var(--ink);
+  padding-top: 1.4rem;
+}
+.facts div {
+  display: grid;
+  grid-template-columns: 9rem 1fr;
+  gap: 1rem;
+}
+.facts dt {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-weight: 600;
+  font-size: 0.92rem;
+  align-self: start;
+}
+.facts dd {
+  margin: 0;
+}
+.facts address {
+  font-style: normal;
+}
+.facts a {
+  display: inline-block;
+  min-height: 44px;
+  line-height: 44px;
+  margin-top: -10px;
+}
+.line {
+  display: block;
+}
+.hh {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-weight: 600;
+  font-size: 0.92rem;
+  margin-bottom: 0.6rem;
+}
+.hours table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.hours th,
+.hours td {
+  text-align: left;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--line);
+  font-weight: 400;
+}
+.hours td {
+  text-align: right;
+  font-size: 0.85rem;
+}
+.hours tr[data-today] th,
+.hours tr[data-today] td {
+  font-weight: 600;
+  color: var(--praline-ink);
+}
+.hours tr[data-today] th::after {
+  content: " · aujourd'hui";
+  font-weight: 400;
+  font-size: 0.8rem;
+}
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.map {
+  margin: 0;
+  display: grid;
+  gap: 0.6rem;
+  align-self: start;
+}
+.map svg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.map figcaption {
+  font-size: 0.78rem;
+  color: var(--ink-3);
+}
+.reviews {
+  margin-top: clamp(3rem, 6vw, 5rem);
+}
+.reviewsBox {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  border: 1px dashed var(--line-strong);
+  padding: 1.4rem;
+  color: var(--ink-2);
+}
+.reviewsBox p {
+  margin: 0;
+  max-width: 50em;
+  font-size: 0.95rem;
+}
+.reviewsBox svg {
+  flex: none;
+  color: var(--crust);
+}
+.rt {
+  font-family: var(--f-display);
+  font-size: 1.6rem !important;
+  color: var(--ink);
+  margin-bottom: 0.3rem !important;
+}
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: 6fr 5fr;
+    gap: 5rem;
+  }
+  .map {
+    position: sticky;
+    top: calc(var(--header-h) + 2rem);
+  }
+}

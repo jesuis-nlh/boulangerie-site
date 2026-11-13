@@ -1,0 +1,137 @@
+.page {
+  padding-top: calc(var(--header-h) + clamp(1rem, 3vw, 2.5rem));
+}
+.grid {
+  display: grid;
+  gap: 2rem;
+}
+.visual {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+.art {
+  width: 92%;
+}
+.fig {
+  position: absolute;
+  left: 1rem;
+  bottom: 0.8rem;
+  margin: 0;
+  font-family: var(--f-mono);
+  font-size: 0.68rem;
+  color: var(--ink-2);
+}
+.info {
+  display: grid;
+  gap: 1.3rem;
+  align-content: start;
+}
+.crumbs ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.6rem;
+  font-size: 0.82rem;
+  color: var(--ink-2);
+}
+.crumbs li + li::before {
+  content: "/";
+  margin-right: 0.6rem;
+  color: var(--ink-3);
+}
+.crumbs li {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.tags {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+.tags:empty {
+  display: none;
+}
+.title {
+  font-size: clamp(3.2rem, 7vw, 6.4rem);
+}
+.short {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--ink-2);
+}
+.price {
+  font-size: 1.05rem;
+}
+.price :global(.ecriteau__price) {
+  font-size: 1.5rem;
+}
+.lead {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin: 0;
+  color: var(--praline-ink);
+  font-size: 0.92rem;
+}
+.desc p {
+  margin: 0;
+  font-size: 1.05rem;
+  max-width: 36em;
+}
+.food {
+  border-top: 1px solid var(--ink);
+  padding-top: 1.2rem;
+}
+.foodTitle {
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+.food p {
+  display: flex;
+  gap: 0.6rem;
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--ink-2);
+}
+.food p svg {
+  flex: none;
+  color: var(--crust);
+  margin-top: 2px;
+}
+.related {
+  padding-block: clamp(4rem, 8vw, 7rem);
+}
+.related h2 {
+  margin-bottom: 1.6rem;
+}
+.relGrid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: 1px;
+  background: var(--line-strong);
+  border: 1px solid var(--line-strong);
+}
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: 7fr 5fr;
+    gap: 4rem;
+  }
+  .visual {
+    position: sticky;
+    top: calc(var(--header-h) + 1.5rem);
+    align-self: start;
+    aspect-ratio: 1 / 0.92;
+  }
+}

@@ -1,0 +1,41 @@
+.section {
+  padding-block: clamp(6rem, 14vw, 12rem);
+}
+.grid {
+  display: grid;
+  gap: 3rem;
+}
+.side {
+  display: grid;
+  gap: 1.5rem;
+  align-content: start;
+}
+.card {
+  width: 120px;
+  color: var(--crust);
+}
+.note {
+  font-size: 0.92rem;
+  color: var(--ink-2);
+  max-width: 22em;
+  margin: 0;
+}
+.text {
+  margin: 0;
+  font-family: var(--f-display);
+  font-size: clamp(2.1rem, 4.6vw, 4.4rem);
+  line-height: 1.04;
+  letter-spacing: -0.015em;
+  text-wrap: pretty;
+}
+.text span {
+  --k: 0%;
+  color: color-mix(in srgb, var(--ink) var(--k), #8c7f74);
+  transition: color 0.25s linear;
+}
+@media (min-width: 960px) {
+  .grid {
+    grid-template-columns: 3fr 9fr;
+    gap: 4rem;
+  }
+}

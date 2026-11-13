@@ -1,0 +1,80 @@
+.section {
+  background: var(--paper-2);
+}
+.head {
+  display: grid;
+  gap: 1.2rem;
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+  max-width: 62rem;
+}
+.head em {
+  color: var(--crust);
+}
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--ink);
+}
+.item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 1.2rem;
+  row-gap: 0.6rem;
+  padding-block: 2rem;
+  border-bottom: 1px solid var(--line-strong);
+}
+.n {
+  font-family: var(--f-mono);
+  font-size: 0.8rem;
+  color: var(--praline-ink);
+  padding-top: 0.5rem;
+}
+.holes {
+  display: none;
+  width: 64px;
+  color: var(--crust);
+}
+.t {
+  font-family: var(--f-display);
+  font-size: clamp(1.9rem, 3.4vw, 2.9rem);
+  line-height: 1;
+}
+.p {
+  grid-column: 2;
+  margin: 0;
+  color: var(--ink-2);
+  max-width: 36em;
+}
+.proof {
+  grid-column: 2;
+  margin: 0.2rem 0 0;
+  font-family: var(--f-mono);
+  font-size: 0.75rem;
+  color: var(--ink-2);
+}
+.proof span {
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  padding: 0.1em 0.6em;
+  margin-right: 0.5em;
+}
+@media (min-width: 960px) {
+  .item {
+    grid-template-columns: 4rem 6rem 5fr 6fr;
+    align-items: baseline;
+    column-gap: 2rem;
+  }
+  .holes {
+    display: block;
+  }
+  .p {
+    grid-column: 4;
+    grid-row: 1;
+  }
+  .proof {
+    grid-column: 4;
+  }
+}

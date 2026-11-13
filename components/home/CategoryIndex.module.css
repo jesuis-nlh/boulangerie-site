@@ -1,0 +1,144 @@
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1.5rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+.head > div {
+  display: grid;
+  gap: 1.2rem;
+}
+.head em {
+  color: var(--praline-ink);
+}
+.box {
+  position: relative;
+  isolation: isolate;
+}
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--ink);
+}
+.list li {
+  border-bottom: 1px solid var(--line-strong);
+}
+.row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  grid-template-areas:
+    "thumb name arrow"
+    "thumb meta arrow";
+  align-items: center;
+  column-gap: 1rem;
+  padding-block: 1rem;
+  text-decoration: none;
+  transition: padding 0.5s var(--ease-out);
+}
+.idx,
+.blurb {
+  display: none;
+}
+.thumb {
+  grid-area: thumb;
+  width: 64px;
+  height: 64px;
+  background: var(--paper-2);
+  display: grid;
+  place-items: center;
+}
+.thumb svg {
+  width: 100%;
+}
+.name {
+  grid-area: name;
+  font-family: var(--f-display);
+  font-size: clamp(1.8rem, 5.6vw, 4.6rem);
+  line-height: 1;
+  letter-spacing: -0.015em;
+  transition:
+    transform 0.6s var(--ease-out),
+    color 0.3s;
+}
+.meta {
+  grid-area: meta;
+  font-size: 0.75rem;
+  color: var(--ink-2);
+}
+.arrow {
+  grid-area: arrow;
+  width: 26px;
+  height: 26px;
+  transition: transform 0.5s var(--ease-out);
+}
+.row:hover .name,
+.row:focus-visible .name {
+  transform: translateX(14px);
+  font-style: italic;
+  color: var(--praline-ink);
+}
+.row:hover .arrow {
+  transform: rotate(-45deg);
+}
+.float {
+  display: none;
+}
+
+@media (min-width: 960px) and (pointer: fine) {
+  .row {
+    grid-template-columns: 4rem minmax(0, 1.5fr) minmax(0, 1fr) 11rem 2rem;
+    grid-template-areas: "idx name blurb meta arrow";
+    padding-block: 1.6rem;
+  }
+  .idx {
+    display: block;
+    grid-area: idx;
+    font-size: 0.75rem;
+    color: var(--ink-3);
+  }
+  .blurb {
+    display: block;
+    grid-area: blurb;
+    color: var(--ink-2);
+    font-size: 0.95rem;
+  }
+  .thumb {
+    display: none;
+  }
+  .meta {
+    text-align: right;
+  }
+  .float {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .list {
+    position: relative;
+    z-index: 1;
+  }
+  .floatArt {
+    position: absolute;
+    width: 260px;
+    left: 36px;
+    top: -170px;
+    opacity: 0;
+    transform: scale(0.7) rotate(-8deg);
+    transition:
+      opacity 0.35s,
+      transform 0.6s var(--ease-out);
+  }
+  .show {
+    opacity: 1;
+    transform: scale(1) rotate(0);
+  }
+}
